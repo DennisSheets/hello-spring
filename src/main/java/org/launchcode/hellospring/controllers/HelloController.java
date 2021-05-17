@@ -35,7 +35,7 @@ public class HelloController {
     public String helloForm(){
         return "<html>" +
                     "<body>" +
-                        "<form action='hello'>" +  //  method='post'
+                        "<form action='/hello'>" +  //  method='post'
                             "<input type='text' name='name'>" +
                             "<input type='submit' value='Greet me!'>" +
                         "</form>" +
