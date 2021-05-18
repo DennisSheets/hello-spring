@@ -22,8 +22,22 @@ public class HelloController {
     }
 
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String helloWithQueryParam(@RequestParam String name){
-        return "Hello, " + name + "!";
+    public String helloWithQueryParam(@RequestParam String name, String language){
+        String message;
+        if(language.equals("french")){
+            message = "Bonjour, " + name + "!";
+        }else if(language.equals("spanish")){
+            message = "Hola, " + name + "!";
+        }else if(language.equals("german")) {
+            message = "Hallo, " + name + "!";
+        }else if(language.equals("italian")) {
+            message = "Ciao, " + name + "!";
+        }else if(language.equals("dutch")) {
+            message = "Hallo, " + name + "!";
+        } else {
+            message = "Hello, " + name;
+        }
+        return "<b>" + message + "</b>";
     }
 
     @GetMapping("{name}")
@@ -31,12 +45,20 @@ public class HelloController {
         return "Hello, " + name + "!";
     }
 
-    @GetMapping("form")
+    @PostMapping("form")
     public String helloForm(){
         return "<html>" +
                     "<body>" +
-                        "<form action='/hello'>" +  //  method='post'
+                        "<form action='/hello' method='post'>" +  //
                             "<input type='text' name='name'>" +
+                            "<select name='language'>" +
+                                "<option value=''>--Please choose an option--</option>" +
+                                "<option value='french'>French</option>" +
+                                "<option value='english'>English</option>" +
+                                "<option value='spanish'>Spanish</option>" +
+                                "<option value='german'>German</option>" +
+                                "<option value='italian'>Italian</option>" +
+                            "</select>" +
                             "<input type='submit' value='Greet me!'>" +
                         "</form>" +
                     "</body>" +
